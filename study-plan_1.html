@@ -281,6 +281,114 @@
     color: var(--muted);
   }
 
+  /* 8주 플랜 서브섹션 */
+  .weekly-plan-section {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .weekly-plan-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .week-tabs {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .week-tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 4px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .week-tab.active-week {
+    border-color: var(--accent4);
+    background: rgba(16,185,129,0.1);
+    color: var(--accent4);
+  }
+
+  .week-theme-bar {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    padding: 8px 12px;
+    background: var(--card);
+    border-left: 2px solid var(--accent4);
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 10px;
+  }
+
+  .week-detail-row {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .week-detail-row:last-child { border-bottom: none; }
+
+  .week-detail-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    padding-top: 1px;
+  }
+
+  .week-detail-day.sat-sun { color: #a78bfa; }
+
+  .week-detail-content {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .week-mission-box {
+    margin-top: 10px;
+    background: var(--card);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .week-mission-box .wm-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--accent4);
+    margin-bottom: 5px;
+  }
+
+  .week-mission-box .wm-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .week-mission-box .wm-note {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
   /* Roadmap phases */
   .phases {
     display: flex;
@@ -650,6 +758,130 @@
   const tagClass = { coding:'tag-coding', algo:'tag-algo', review:'tag-review', project:'tag-project', english:'tag-english' };
   const tagLabel = { coding:'코딩', algo:'알고리즘', review:'복습', project:'프로젝트', english:'영어' };
 
+  const weeklyPlan = [
+    {
+      label:'W1', theme:'Python 환경 + 기초 문법',
+      days:[
+        { d:'MON', c:'Python 설치, VS Code 세팅, 가상환경(venv) 개념' },
+        { d:'TUE', c:'변수, 자료형 — int, str, list, dict, tuple, set' },
+        { d:'WED', c:'조건문 (if/elif/else), 비교·논리 연산자' },
+        { d:'THU', c:'반복문 (for, while), range(), enumerate()' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'숫자 맞추기 게임',
+      missionNote:'랜덤 숫자를 사용자가 맞히는 터미널 게임 — 조건문 + 반복문 + input() 조합'
+    },
+    {
+      label:'W2', theme:'함수 & 파일 입출력',
+      days:[
+        { d:'MON', c:'함수 정의, 매개변수, return, 기본값 인자' },
+        { d:'TUE', c:'*args, **kwargs, 람다(lambda)' },
+        { d:'WED', c:'파일 읽기/쓰기 (open, read, write, with문)' },
+        { d:'THU', c:'예외처리 (try/except/finally), raise' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'CSV 성적 파일 → 평균·최고점 계산 → 결과 파일 저장',
+      missionNote:'파일 I/O + 함수 + 예외처리 실전 적용'
+    },
+    {
+      label:'W3', theme:'자료구조 심화 + 컴프리헨션',
+      days:[
+        { d:'MON', c:'list/dict/set 메서드 총정리, 중첩 구조' },
+        { d:'TUE', c:'list comprehension, dict comprehension' },
+        { d:'WED', c:'map(), filter(), zip(), sorted()' },
+        { d:'THU', c:'모듈 import, os / sys / json 표준 라이브러리' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'JSON 파싱 → 원하는 키 추출 → 정렬 → 새 JSON 저장',
+      missionNote:'실무에서 매일 하는 작업 패턴'
+    },
+    {
+      label:'W4', theme:'OOP (객체지향)',
+      days:[
+        { d:'MON', c:'클래스, __init__, self, 인스턴스 변수' },
+        { d:'TUE', c:'메서드, 클래스 변수, @classmethod, @staticmethod' },
+        { d:'WED', c:'상속, 오버라이딩, super()' },
+        { d:'THU', c:'__str__, __repr__, __len__ 등 매직 메서드' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'도서관 시스템 — Book·Library 클래스로 대출/반납 구현',
+      missionNote:'OOP 개념을 실제 설계에 적용하는 첫 경험'
+    },
+    {
+      label:'W5', theme:'Pandas 기초',
+      days:[
+        { d:'MON', c:'DataFrame/Series 생성, CSV 읽기(read_csv)' },
+        { d:'TUE', c:'인덱싱(loc, iloc), 필터링, 조건 선택' },
+        { d:'WED', c:'결측값 처리(dropna, fillna), 데이터 타입 변환' },
+        { d:'THU', c:'groupby, agg, merge, concat' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'공공 데이터 CSV → 지역별 평균·최대값 집계 → 저장',
+      missionNote:'Kaggle 또는 공공데이터포털 무료 CSV 활용'
+    },
+    {
+      label:'W6', theme:'Pandas 심화 + NumPy',
+      days:[
+        { d:'MON', c:'pivot_table, apply(), 복잡한 집계' },
+        { d:'TUE', c:'시계열 데이터 처리, datetime, resample' },
+        { d:'WED', c:'NumPy 배열, shape, dtype, 브로드캐스팅' },
+        { d:'THU', c:'NumPy 연산, 슬라이싱, 통계함수' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'월별 매출 데이터 → 시계열 트렌드 집계 + 이상값 탐지',
+      missionNote:'DE에서 자주 다루는 시계열 패턴'
+    },
+    {
+      label:'W7', theme:'고급 Python 패턴',
+      days:[
+        { d:'MON', c:'제너레이터(yield), 이터레이터 프로토콜' },
+        { d:'TUE', c:'데코레이터(@), 클로저(closure)' },
+        { d:'WED', c:'Context Manager (with문 직접 만들기)' },
+        { d:'THU', c:'타입 힌트(type hints), dataclass' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'실행 시간 측정 데코레이터 + 로깅 기능이 있는 파이프라인 함수',
+      missionNote:'DE 실무 코드에서 자주 보이는 패턴'
+    },
+    {
+      label:'W8', theme:'실전 마무리 + API 연동',
+      days:[
+        { d:'MON', c:'requests 라이브러리, REST API 호출' },
+        { d:'TUE', c:'JSON 파싱, API 응답 → DataFrame 변환' },
+        { d:'WED', c:'환경변수(.env), 패키지 구조화(src 레이아웃)' },
+        { d:'THU', c:'pytest 기초 — 내가 만든 함수에 테스트 작성' },
+        { d:'FRI', c:'복습 + TIL 영어로 3줄 작성' },
+      ],
+      mission:'공개 API 호출 → 파싱 → CSV 저장 → GitHub 업로드',
+      missionNote:'DE 파이프라인의 가장 기본 형태 — 이걸 혼자 짤 수 있으면 SQL로 넘어갈 준비 완료'
+    },
+  ];
+
+  let currentWeek = 0;
+
+  function showWeek(i) {
+    currentWeek = i;
+    document.querySelectorAll('.week-tab').forEach((t, j) => {
+      t.className = 'week-tab' + (j === i ? ' active-week' : '');
+    });
+    const w = weeklyPlan[i];
+    const rows = w.days.map(d => `
+      <div class="week-detail-row">
+        <span class="week-detail-day">${d.d}</span>
+        <span class="week-detail-content">${d.c}</span>
+      </div>
+    `).join('');
+    document.getElementById('weekContent').innerHTML = `
+      <div class="week-theme-bar">${w.theme}</div>
+      <div class="week-rows-wrap">${rows}</div>
+      <div class="week-mission-box">
+        <div class="wm-label">// 토요일 미션</div>
+        <div class="wm-title">${w.mission}</div>
+        <div class="wm-note">${w.missionNote}</div>
+      </div>
+    `;
+  }
+
   function showPhase(i) {
     const tabs = document.querySelectorAll('.phase-tab');
     tabs.forEach((t, j) => {
@@ -667,15 +899,29 @@
       </div>
     `).join('');
 
-    document.getElementById('phaseContent').innerHTML = `
-      <div class="week-focus-note" style="border-left-color:${p.missionColor}">${p.note}</div>
-      <div class="week-rows-wrap">${rows}</div>
-      <div class="week-mission">
-        <div class="week-mission-label" style="color:${p.missionColor}">// 주말 미션</div>
-        <div class="week-mission-text">${p.mission}</div>
-        <div class="week-mission-note">${p.missionNote}</div>
-      </div>
-    `;
+    if (i === 0) {
+      document.getElementById('phaseContent').innerHTML = `
+        <div class="week-focus-note" style="border-left-color:${p.missionColor}">${p.note}</div>
+        <div class="weekly-plan-section">
+          <div class="weekly-plan-label">// 8주 Python 플랜</div>
+          <div class="week-tabs">
+            ${weeklyPlan.map((w, j) => `<button class="week-tab${j === 0 ? ' active-week' : ''}" onclick="showWeek(${j})">${w.label}</button>`).join('')}
+          </div>
+          <div id="weekContent"></div>
+        </div>
+      `;
+      showWeek(0);
+    } else {
+      document.getElementById('phaseContent').innerHTML = `
+        <div class="week-focus-note" style="border-left-color:${p.missionColor}">${p.note}</div>
+        <div class="week-rows-wrap">${rows}</div>
+        <div class="week-mission">
+          <div class="week-mission-label" style="color:${p.missionColor}">// 주말 미션</div>
+          <div class="week-mission-text">${p.mission}</div>
+          <div class="week-mission-note">${p.missionNote}</div>
+        </div>
+      `;
+    }
   }
 
   showPhase(0);
